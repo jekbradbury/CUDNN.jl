@@ -30,7 +30,7 @@ function __init__()
     global CUDNN_VERSION = convert(Int, ccall((:cudnnGetVersion,libcudnn),Csize_t,()))
 end
 
-const libcudnn = Libdl.find_library(["libcudnn"])
+const libcudnn = Libdl.find_library(["libcudnn"], ["/usr/local/cuda","/usr/local/cuda/lib64/","/usr/local/cuda/lib/"])
 isempty(libcudnn) && error("CUDNN library cannot be found")
 
 export CUDNN_VERSION
